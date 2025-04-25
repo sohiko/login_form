@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="JP">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New registration</title>
+    <link rel="stylesheet" href="/css/root.css">
+    <link rel="stylesheet" href="/account/css/style.css">
+    <script src="https://kit.fontawesome.com/e4a9507649.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="contents">
+        <div class="logo">
+            <img src="/img/logo.png" title="Logo" alt="サイトロゴ">
+        </div>
+        <div class="login">
+            <form method="post" action="./confirm.php" class="form" onsubmit="return validateForm()">
+                <h2>アカウント作成</h2>
+                  <div class="group">
+                    <input type="text" name="company" id="company" required><span class="highlight"></span><span class="bar"></span>
+                    <label id="l_company" for="company">社名</label>
+                    <p style="color: red; text-align: left; font-size: 14px;" class="company">社名を入力してください</p>
+                  </div>
+                  <div class="group">
+                    <input type="text" name="name" id="name" required><span class="highlight"></span><span class="bar"></span>
+                    <label id="l_name" for="name">氏名（フルネーム）</label>
+                    <p style="color: red; text-align: left; font-size: 14px;" class="name">氏名を入力してください</p>
+                  </div>
+                  <div class="group">
+                    <input type="email" name="email" id="email" required><span class="highlight"></span><span class="bar"></span>
+                    <label id="l_email" for="email">メールアドレス</label>
+                    <p style="color: red; text-align: left; font-size: 14px;" class="email">メールアドレスを入力してください</p>
+                  </div>
+                  <div class="group">
+                    <input type="text" name="phone" id="phone" required><span class="highlight"></span><span class="bar"></span>
+                    <label id="l_phone" for="phone">電話番号</label>
+                    <p style="color: red; text-align: left; font-size: 14px;" class="phone">電話番号を入力してください</p>
+                  </div>
+                  <div class="group">
+                    <input type="password" name="password" id="password" minlength="8" maxlength="30" required><span class="highlight"></span><span class="bar"></span>
+                    <label id="l_password" for="password">パスワード</label>
+                    <p style="color: #656565; text-align: left; font-size: 14px;" class="password">8文字以上30文字以内で設定してください。<br>大文字小文字を含めた英数字が推奨されます。</p>
+                  </div>
+                  <div class="check">
+                    <span class="check_title"><i class="fa-solid fa-triangle-exclamation" style="color: #ffdd00;"></i>　必ずご確認ください</span>
+                    <ul>
+                        <li>社名は正式名称をお書きください。</li>
+                        <li>本サイトはJavascriptを有効にしていないと正しく機能しません。</li>
+                        <li><span style="color: red;">上記入力欄はすべて必須項目です。</span></li>
+                    </ul>
+                    <div class="checkbox">
+                      <div class="checkbox01">
+                        <input type="checkbox" value="true" id="check01" name="check01" required><label class="check01" for="check01">上記の項目を確認し、かつ誤りがないことを確認しました</label>
+                      </div>
+                      <div class="checkbox01">
+                        <input type="checkbox" value="true" id="check01 check02" name="check02" required><label class="check01 check02" for="check02"><a href="../rule/terms.pdf" target="_blank" rel="noopener noreferrer">利用規約</a>及び<a href="../rule/privacy_policy.pdf" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意します</label>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="button buttonBlue">作成
+                    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                  </button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/phonenumber.js"></script>
+    <script src="../js/jquery-3.6.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("p[style*='color: red']").css("visibility", "hidden");
+    });
+    </script>
+    <script>
+        window.addEventListener("load",function(){
+            const inputTel = document.getElementById('phone');
+            if (!inputTel){ return false;}
+            inputTel.addEventListener('blur', () => {
+                let validateTelNeo = function (value) {
+                    return /^[0０]/.test(value) && libphonenumber.isValidNumber(value, 'JP');
+                }
+                let formatTel = function (value) {
+                    return new libphonenumber.AsYouType('JP').input(value);
+                }
+ 
+                const postdata = inputTel.value;
+                if (!validateTelNeo(postdata)) {
+                    console.log('ERROR')
+                    return
+                }
+                let formattedTel = formatTel(postdata);
+                inputTel.value = formattedTel;
+            });
+        });
+    </script>
+    <script>
+      const VCompany = document.querySelector("#company");
+      const VName = document.querySelector("#name");
+      const VEmail = document.querySelector("#email");
+      const VPhone = document.querySelector("#phone");
+      const VPassword = document.querySelector("#password");
+
+      const LCompany = document.querySelector("#l_company");
+      const LName = document.querySelector("#l_name");
+      const LEmail = document.querySelector("#l_email");
+      const LPhone = document.querySelector("#l_phone");
+      const LPassword = document.querySelector("#l_password");
+
+      VCompany.addEventListener("input", function() {
+        if (VCompany.value !== "") {
+          LCompany.style.visibility = "hidden";
+        } else {
+          LCompany.style.visibility = "visible";
+        }
+      });
+      VName.addEventListener("input", function() {
+        if (VName.value !== "") {
+          LName.style.visibility = "hidden";
+        } else {
+          LName.style.visibility = "visible";
+        }
+      });
+      VEmail.addEventListener("input", function() {
+        if (VEmail.value !== "") {
+          LEmail.style.visibility = "hidden";
+        } else {
+          LEmail.style.visibility = "visible";
+        }
+      });
+      VPhone.addEventListener("input", function() {
+        if (VPhone.value !== "") {
+          LPhone.style.visibility = "hidden";
+        } else {
+          LPhone.style.visibility = "visible";
+        }
+      });
+      VPassword.addEventListener("input", function() {
+        if (VPassword.value !== "") {
+          LPassword.style.visibility = "hidden";
+        } else {
+          LPassword.style.visibility = "visible";
+        }
+      });
+    </script>
+    <script>
+      function validateForm() {
+        const fields = [
+          { input: document.querySelector("#company"), error: document.querySelector(".company") },
+          { input: document.querySelector("#name"), error: document.querySelector(".name") },
+          { input: document.querySelector("#email"), error: document.querySelector(".email") },
+          { input: document.querySelector("#phone"), error: document.querySelector(".phone") },
+          { input: document.querySelector("#password"), error: document.querySelector(".password") }
+        ];
+
+
+        let isValid = true;
+
+        fields.forEach(field => {
+          if (!field.input || !field.input.value) {
+            if (field.error) {
+              field.error.style.visibility = "visible";
+            }
+            isValid = false;
+          } else {
+            if (field.error) {
+              field.error.style.visibility = "hidden";
+            }
+          }
+        });
+        return isValid;
+      }
+    </script>
+</body>
