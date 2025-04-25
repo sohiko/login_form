@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica;
+    background: #F7F7F9;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    width: 70px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+
+.form {
+    width: 380px;
+    margin: 4em auto;
+    padding: 3em 2em 2em 2em;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+}
+
+.group {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    background: #fafafa;
+    color: #636363;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #757575;
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: all 0.2s ease;
+}
+
+input:focus~label, input.used~label {
+    top: -20px;
+    transform: scale(.75);
+    left: -2px;
+    color: #4a89dc;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #4a54dc;
+    transition: all 0.2s ease;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+input:focus~.bar:before, input:focus~.bar:after {
+    width: 50%;
+}
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+input:focus~.highlight {
+    animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #4a89dc;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    margin: .3em 0 1em 0;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #4a54dc;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.buttonBlue {
+    background: #4a54dc;
+    text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.buttonBlue:hover {
+    background: #4a54dc;
+}
+
+.ripples {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+}
+
+.ripplesCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.ripples.is-active .ripplesCircle {
+    animation: ripples .4s ease-in;
+}
+
+@keyframes ripples {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        width: 200%;
+        padding-bottom: 200%;
+        opacity: 0;
+    }
+}
+
+.accordion-wrap {
+    margin: 0 auto;
+    background-color: #fafafa;
+    width: 450px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+    color: #4a54dc;
+    user-select: none;
+}
+
+.accordion-item {
+    width: 100%;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.accordion-header {
+    transition: ease-in-out 100ms;
+}
+
+.accordion-text {
+    width: 100%;
+    display: none;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.fa {
+    transition: ease-in-out 300ms;
+}
+
+.rotate-fa {
+    transform: rotate(180deg);
+}
+
+.accordion-header .fa {
+    float: right;
+    line-height: 35px;
+}
+
+.accordion-gold {
+    color: #4a54dc;
+}
+
+.accordion-no-bar {
+    border-bottom: 0;
+}
+
+.accordion-wrap a {
+    display: block;
+    color: #4a54dc;
+    text-decoration: none;
+}
+
+.logout {
+    border: 2px solid #ff7300;
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+    background-color: #fee5d1;
+}
+
+.pass_reset {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pass_reset a {
+    color: red;
+}
+
+@media screen and (max-width: 400px) {
+    .form {
+        width: 300px;
+    }
+
+    .accordion-wrap {
+        width: 300px;
+    }
+}

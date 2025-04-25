@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+html {
+    background-color: #F6F6F6;
+    color: #464D48;
+}
+
+/* Header */
+header {
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: space-between;
+    height: 100px !important;
+}
+.h_left {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.h_l_img img {
+    height: 60px;
+}
+.h_right {
+    line-height: 100px;
+    margin-right: 50px;
+}
+.h_r_nav a {
+    color: #464D48;
+    padding: 0 15px;
+    border-left: 1px #464D48 solid;
+    text-decoration: none;
+}
+.nav_border {
+    border-right: 1px #464D48 solid;
+}
+/* Hamburger Menu */
+nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    bottom: 0;
+    width: 300px;
+    background: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition: all .5s;
+    z-index: 3;
+    opacity: 0;
+}
+.open nav {
+    left: 0;
+    opacity: 1;
+}
+nav .inner {
+    padding: 25px;
+}
+nav .inner ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav .inner ul li {
+    position: relative;
+    margin: 0;
+    border-bottom: 1px solid #333;
+}
+nav .inner ul li a {
+    display: block;
+    color: #333;
+    font-size: 14px;
+    padding: 1em;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+nav .inner ul li a:hover {
+    background: #e4e4e4;
+}
+@media screen and (max-width: 767px) {
+    nav {
+        left: -220px;
+        width: 220px;
+    }
+}
+.toggle_btn {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    transition: all .5s;
+    cursor: pointer;
+    z-index: 3;
+}
+.toggle_btn span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #333;
+    border-radius: 4px;
+    transition: all .5s;
+}
+.toggle_btn span:nth-child(1) {
+    top: 4px;
+}
+.toggle_btn span:nth-child(2) {
+    top: 14px;
+}
+.toggle_btn span:nth-child(3) {
+    bottom: 4px;
+}
+.open .toggle_btn span {
+    background-color: #fff;
+}
+.open .toggle_btn span:nth-child(1) {
+    -webkit-transform: translateY(10px) rotate(-315deg);
+    transform: translateY(10px) rotate(-315deg);
+}
+.open .toggle_btn span:nth-child(2) {
+    opacity: 0;
+}
+.open .toggle_btn span:nth-child(3) {
+    -webkit-transform: translateY(-10px) rotate(315deg);
+    transform: translateY(-10px) rotate(315deg);
+}
+#mask {
+    display: none;
+    transition: all .5s;
+}
+.open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .8;
+    z-index: 2;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+    .h_right {
+        display: none;
+    }
+}
+@media screen and (min-width: 600px) {
+    #navArea {
+        display: none;
+    }
+}
+.display_none {
+    display: none;
+}
+.news {
+    border: 2px #ec5a5a solid;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+.news_title {
+    background-color: #ec5a5a;
+    color: white;
+}
+.news_system_text {
+    padding: 10px 15px;
+}
